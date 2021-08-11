@@ -1,11 +1,6 @@
 ---
 title: "College Life and Sleep Patterns"
 output: 
-  html_document:
-    toc: yes
-    toc_float: yes
-    df_print: paged
-    number_sections: true
   html_notebook:
     toc: yes
     toc_float: yes
