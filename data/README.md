@@ -9,4 +9,4 @@ The data fields included are: Gender, Class Year, Lark Owl, Numbers of early cla
 
 Below I include some basic statistics for this datasets, including dimensions and range of years ...
 
-THere are 27 Variables and 253 observations, over a period of 4 school years.
+There are 27 Variables and 253 observations, over a period of 4 school years.
