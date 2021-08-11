@@ -235,10 +235,134 @@ pre code {
 <p>Dataset provided by <a href="mailto:rsanchezarias@floridapoly.edu">Professor Rei Sanchez-Arias</a>. It can be found here:</p>
 <p><a href="https://github.com/reisanar/datasets/blob/master/SleepStudy.csv" class="uri">https://github.com/reisanar/datasets/blob/master/SleepStudy.csv</a>.</p>
 <p>It contains 27 variables and 253 observations, and is distributed in .csv format.</p>
+<p>Variables include:</p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="84%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variables</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Gender</code></td>
+<td>1 = male, 0 = female</td>
+</tr>
+<tr class="even">
+<td><code>ClassYear</code></td>
+<td>Year in school, 1 = first year, …, 4 = senior</td>
+</tr>
+<tr class="odd">
+<td><code>LarkOwl</code></td>
+<td>Early riser of night owl? Lark, Neither, or Owl</td>
+</tr>
+<tr class="even">
+<td><code>NumEarlyClass</code></td>
+<td>Number of classes per week before 9am</td>
+</tr>
+<tr class="odd">
+<td><code>EarlyClass</code></td>
+<td>Indicator for any early classes</td>
+</tr>
+<tr class="even">
+<td><code>GPA</code></td>
+<td>Grade point average (0-4 scale)</td>
+</tr>
+<tr class="odd">
+<td><code>ClassesMissed</code></td>
+<td>Number of classes missed in a semester</td>
+</tr>
+<tr class="even">
+<td><code>CognitionZscore</code></td>
+<td>Z-score on a test of cognitive skills</td>
+</tr>
+<tr class="odd">
+<td><code>PoorSleepQuality</code></td>
+<td>Measure of sleep quality (higher values are poorer sleep)</td>
+</tr>
+<tr class="even">
+<td><code>DepressionScore</code></td>
+<td>Measure of degree of depression</td>
+</tr>
+<tr class="odd">
+<td><code>AnxietyScore</code></td>
+<td>Measure of amount of anxiety</td>
+</tr>
+<tr class="even">
+<td><code>StressScore</code></td>
+<td>Measure amount of stress</td>
+</tr>
+<tr class="odd">
+<td><code>DepressionStatus</code></td>
+<td>Coded depression score: normal, moderate, or severe</td>
+</tr>
+<tr class="even">
+<td><code>AnxietyStatus</code></td>
+<td>Coded anxiety score: normal, moderate, or severe</td>
+</tr>
+<tr class="odd">
+<td><code>Stress</code></td>
+<td>Coded stress score: normal or high</td>
+</tr>
+<tr class="even">
+<td><code>DASScore</code></td>
+<td>Combined score for depression, anxiety and stress</td>
+</tr>
+<tr class="odd">
+<td><code>Happiness</code></td>
+<td>Measure of degree of happiness</td>
+</tr>
+<tr class="even">
+<td><code>AlcoholUse</code></td>
+<td>Self-reported: Abstain, Light, Moderate, or Heavy</td>
+</tr>
+<tr class="odd">
+<td><code>Drinks</code></td>
+<td>Number of alcoholic drinks per week</td>
+</tr>
+<tr class="even">
+<td><code>WeekdayBed</code></td>
+<td>Average weekday bedtime (24.0 = midnight)</td>
+</tr>
+<tr class="odd">
+<td><code>WeekdayRise</code></td>
+<td>Average weekday rise time (8.0 = 8am)</td>
+</tr>
+<tr class="even">
+<td><code>WeekdaySleep</code></td>
+<td>Average hours of sleep on weekdays</td>
+</tr>
+<tr class="odd">
+<td><code>WeekendBed</code></td>
+<td>Average weekend bedtime (24.0 = midnight)</td>
+</tr>
+<tr class="even">
+<td><code>WeekendRise</code></td>
+<td>Average weekend rise time (8.0 = 8am)</td>
+</tr>
+<tr class="odd">
+<td><code>WeekendSleep</code></td>
+<td>Average weekend bedtime (24.0 = midnight)</td>
+</tr>
+<tr class="even">
+<td><code>AverageSleep</code></td>
+<td>Average hours of sleep for all days</td>
+</tr>
+<tr class="odd">
+<td><code>AllNighter</code></td>
+<td>Had an all-nighter this semester? 1 = yes, 0 = no</td>
+</tr>
+</tbody>
+</table>
+<p><em>Data Dictionary provided by Professor Rei Sanchez-Arias <a href="https://github.com/reisanar/datasets/blob/master/README.md">here</a></em></p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlByb2plY3QgUHJvcG9zYWwiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQojIyBTZWN0aW9uIDEuIEludHJvZHVjdGlvbg0KDQpTbGVlcCBpcyBvZnRlbiBhIHBvaW50IG9mIGNvbnRlbnRpb24gZm9yIGNvbGxlZ2Ugc3R1ZGVudHMuIFdoaWxlIG1vc3Qgd291bGQgYWdyZWUgdGhhdCBzbGVlcCBpcyBpbXBvcnRhbnQsIGV4dGVybmFsIGZhY3RvcnMgc3VjaCBhcyB3b3JrLCBzdHVkeWluZywgYW5kIG1lbnRhbCBoZWFsdGggY2FuIGltcGFjdCBvbmUncyBzbGVlcCBzY2hlZHVsZSAtIGFuZCB0aGF0J3MgYW4gaXNzdWUuDQoNCkdldHRpbmcgZW5vdWdoIHNsZWVwIGlzIGEgbmVjZXNzYXJ5IHN0ZXAgZm9yIG1haW50YWluaW5nIGJvdGggcGh5c2ljYWwgYW5kIG1lbnRhbCBoZWFsdGgsIGJ1dCB0aGF0IGNhbiBvZnRlbiBjb21lIGluIGNvbmZsaWN0IHdpdGggY29sbGVnZSBhbmQgYWR1bHQgbGlmZS4gVGhpcyBwcm9qZWN0IGhvcGVzIHRvIGV4cGxvcmUgYSBzYW1wbGUgb2YgQ29sbGVnZSBTdHVkZW50cyB3aG8gcGFydGljaXBhdGVkIGluIGEgc3R1ZHkgb24gU2xlZXAgUGF0dGVybnMsIGFuZCB1bmRlcnN0YW5kIHZhcnlpbmcgZGVtb2dyYXBoaWNzJyBzbGVlcCBiZWhhdmlvciBhcyB3ZWxsIGFzIGhvdyBzbGVlcCBjb3JyZWxhdGVzIHdpdGggKipncmFkZXMqKiwqKm1lbnRhbCBoZWFsdGgqKiBhbmQgKipjb2duaXRpdmUgZnVuY3Rpb24qKiAgDQoNCiMjIFNlY3Rpb24gMi4gRGF0YSBBbmFseXNpcyBQbGFuDQoNClNvbWUgcXVlc3Rpb25zIHRoYXQgSSBob3BlIHRvIGFuc3dlciBpbmNsdWRlOg0KDQotIEhvdyBkbyBkaWZmZXJlbnQgZGVtb2dyYXBoaWNzIHRlbmQgdG8gc2xlZXA/DQoNCi0gSG93IGRvZXMgc2xlZXAgY29ycmVsYXRlIHdpdGggbWVudGFsIGhlYWx0aD8NCg0KLSBDYW4gc2xlZXAgaGF2ZSBhbiBlZmZlY3Qgb24gc29tZW9uZSdzIGNvZ25pdGl2ZSBmdW5jdGlvbj8NCg0KLSBIb3cgZG9lcyBwb29yIHNsZWVwIHRlbmQgdG8gYWZmZWN0IGdyYWRlcz8NCg0KIyMgU2VjdGlvbiAzLiBEYXRhDQoNCkRhdGFzZXQgcHJvdmlkZWQgYnkgW1Byb2Zlc3NvciBSZWkgU2FuY2hlei1Bcmlhc10obWFpbHRvOnJzYW5jaGV6YXJpYXNAZmxvcmlkYXBvbHkuZWR1KS4gSXQgY2FuIGJlIGZvdW5kIGhlcmU6DQoNCjxodHRwczovL2dpdGh1Yi5jb20vcmVpc2FuYXIvZGF0YXNldHMvYmxvYi9tYXN0ZXIvU2xlZXBTdHVkeS5jc3Y+LiANCg0KSXQgY29udGFpbnMgMjcgdmFyaWFibGVzIGFuZCAyNTMgb2JzZXJ2YXRpb25zLCBhbmQgaXMgZGlzdHJpYnV0ZWQgaW4gLmNzdiBmb3JtYXQuDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlByb2plY3QgUHJvcG9zYWwiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQojIyBTZWN0aW9uIDEuIEludHJvZHVjdGlvbg0KDQpTbGVlcCBpcyBvZnRlbiBhIHBvaW50IG9mIGNvbnRlbnRpb24gZm9yIGNvbGxlZ2Ugc3R1ZGVudHMuIFdoaWxlIG1vc3Qgd291bGQgYWdyZWUgdGhhdCBzbGVlcCBpcyBpbXBvcnRhbnQsIGV4dGVybmFsIGZhY3RvcnMgc3VjaCBhcyB3b3JrLCBzdHVkeWluZywgYW5kIG1lbnRhbCBoZWFsdGggY2FuIGltcGFjdCBvbmUncyBzbGVlcCBzY2hlZHVsZSAtIGFuZCB0aGF0J3MgYW4gaXNzdWUuDQoNCkdldHRpbmcgZW5vdWdoIHNsZWVwIGlzIGEgbmVjZXNzYXJ5IHN0ZXAgZm9yIG1haW50YWluaW5nIGJvdGggcGh5c2ljYWwgYW5kIG1lbnRhbCBoZWFsdGgsIGJ1dCB0aGF0IGNhbiBvZnRlbiBjb21lIGluIGNvbmZsaWN0IHdpdGggY29sbGVnZSBhbmQgYWR1bHQgbGlmZS4gVGhpcyBwcm9qZWN0IGhvcGVzIHRvIGV4cGxvcmUgYSBzYW1wbGUgb2YgQ29sbGVnZSBTdHVkZW50cyB3aG8gcGFydGljaXBhdGVkIGluIGEgc3R1ZHkgb24gU2xlZXAgUGF0dGVybnMsIGFuZCB1bmRlcnN0YW5kIHZhcnlpbmcgZGVtb2dyYXBoaWNzJyBzbGVlcCBiZWhhdmlvciBhcyB3ZWxsIGFzIGhvdyBzbGVlcCBjb3JyZWxhdGVzIHdpdGggKipncmFkZXMqKiwqKm1lbnRhbCBoZWFsdGgqKiBhbmQgKipjb2duaXRpdmUgZnVuY3Rpb24qKiAgDQoNCiMjIFNlY3Rpb24gMi4gRGF0YSBBbmFseXNpcyBQbGFuDQoNClNvbWUgcXVlc3Rpb25zIHRoYXQgSSBob3BlIHRvIGFuc3dlciBpbmNsdWRlOg0KDQotIEhvdyBkbyBkaWZmZXJlbnQgZGVtb2dyYXBoaWNzIHRlbmQgdG8gc2xlZXA/DQoNCi0gSG93IGRvZXMgc2xlZXAgY29ycmVsYXRlIHdpdGggbWVudGFsIGhlYWx0aD8NCg0KLSBDYW4gc2xlZXAgaGF2ZSBhbiBlZmZlY3Qgb24gc29tZW9uZSdzIGNvZ25pdGl2ZSBmdW5jdGlvbj8NCg0KLSBIb3cgZG9lcyBwb29yIHNsZWVwIHRlbmQgdG8gYWZmZWN0IGdyYWRlcz8NCg0KIyMgU2VjdGlvbiAzLiBEYXRhDQoNCkRhdGFzZXQgcHJvdmlkZWQgYnkgW1Byb2Zlc3NvciBSZWkgU2FuY2hlei1Bcmlhc10obWFpbHRvOnJzYW5jaGV6YXJpYXNAZmxvcmlkYXBvbHkuZWR1KS4gSXQgY2FuIGJlIGZvdW5kIGhlcmU6DQoNCjxodHRwczovL2dpdGh1Yi5jb20vcmVpc2FuYXIvZGF0YXNldHMvYmxvYi9tYXN0ZXIvU2xlZXBTdHVkeS5jc3Y+LiANCg0KSXQgY29udGFpbnMgMjcgdmFyaWFibGVzIGFuZCAyNTMgb2JzZXJ2YXRpb25zLCBhbmQgaXMgZGlzdHJpYnV0ZWQgaW4gLmNzdiBmb3JtYXQuDQoNClZhcmlhYmxlcyBpbmNsdWRlOg0KDQogVmFyaWFibGVzICAgIHwgIERlc2NyaXB0aW9uDQotLS0tLS0tLS0tLS0gIHwtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpgR2VuZGVyYCAgICAgIHwgMSA9IG1hbGUsIDAgPSBmZW1hbGUNCmBDbGFzc1llYXJgICAgICAgICB8IFllYXIgaW4gc2Nob29sLCAxID0gZmlyc3QgeWVhciwgLi4uLCA0ID0gc2VuaW9yDQpgTGFya093bGAgfCBFYXJseSByaXNlciBvZiBuaWdodCBvd2w/IExhcmssIE5laXRoZXIsIG9yIE93bA0KYE51bUVhcmx5Q2xhc3NgICB8IE51bWJlciBvZiBjbGFzc2VzIHBlciB3ZWVrIGJlZm9yZSA5YW0NCmBFYXJseUNsYXNzYCAgICAgIHwgSW5kaWNhdG9yIGZvciBhbnkgZWFybHkgY2xhc3Nlcw0KYEdQQWAgICAgICAgIHwgR3JhZGUgcG9pbnQgYXZlcmFnZSAoMC00IHNjYWxlKQ0KYENsYXNzZXNNaXNzZWRgfCBOdW1iZXIgb2YgY2xhc3NlcyBtaXNzZWQgaW4gYSBzZW1lc3Rlcg0KYENvZ25pdGlvblpzY29yZWAgIHwgWi1zY29yZSBvbiBhIHRlc3Qgb2YgY29nbml0aXZlIHNraWxscw0KYFBvb3JTbGVlcFF1YWxpdHlgICAgICAgfCBNZWFzdXJlIG9mIHNsZWVwIHF1YWxpdHkgKGhpZ2hlciB2YWx1ZXMgYXJlIHBvb3JlciBzbGVlcCkNCmBEZXByZXNzaW9uU2NvcmVgICAgICAgICB8IE1lYXN1cmUgb2YgZGVncmVlIG9mIGRlcHJlc3Npb24NCmBBbnhpZXR5U2NvcmVgIHwgTWVhc3VyZSBvZiBhbW91bnQgb2YgYW54aWV0eQ0KYFN0cmVzc1Njb3JlYCAgfCBNZWFzdXJlIGFtb3VudCBvZiBzdHJlc3MNCmBEZXByZXNzaW9uU3RhdHVzYCAgICAgIHwgQ29kZWQgZGVwcmVzc2lvbiBzY29yZTogbm9ybWFsLCBtb2RlcmF0ZSwgb3Igc2V2ZXJlDQpgQW54aWV0eVN0YXR1c2AgICAgICAgIHwgQ29kZWQgYW54aWV0eSBzY29yZTogbm9ybWFsLCBtb2RlcmF0ZSwgb3Igc2V2ZXJlDQpgU3RyZXNzYCB8IENvZGVkIHN0cmVzcyBzY29yZTogbm9ybWFsIG9yIGhpZ2gNCmBEQVNTY29yZWAgIHwgQ29tYmluZWQgc2NvcmUgZm9yIGRlcHJlc3Npb24sIGFueGlldHkgYW5kIHN0cmVzcw0KYEhhcHBpbmVzc2AgICAgICB8IE1lYXN1cmUgb2YgZGVncmVlIG9mIGhhcHBpbmVzcw0KYEFsY29ob2xVc2VgICAgICAgICB8IFNlbGYtcmVwb3J0ZWQ6IEFic3RhaW4sIExpZ2h0LCBNb2RlcmF0ZSwgb3IgSGVhdnkNCmBEcmlua3NgIHwgTnVtYmVyIG9mIGFsY29ob2xpYyBkcmlua3MgcGVyIHdlZWsNCmBXZWVrZGF5QmVkYCAgfCBBdmVyYWdlIHdlZWtkYXkgYmVkdGltZSAoMjQuMCA9IG1pZG5pZ2h0KQ0KYFdlZWtkYXlSaXNlYCAgICAgIHwgQXZlcmFnZSB3ZWVrZGF5IHJpc2UgdGltZSAoOC4wID0gOGFtKQ0KYFdlZWtkYXlTbGVlcGAgICAgICAgIHwgQXZlcmFnZSBob3VycyBvZiBzbGVlcCBvbiB3ZWVrZGF5cw0KYFdlZWtlbmRCZWRgfCBBdmVyYWdlIHdlZWtlbmQgYmVkdGltZSAoMjQuMCA9IG1pZG5pZ2h0KQ0KYFdlZWtlbmRSaXNlYCAgfCBBdmVyYWdlIHdlZWtlbmQgcmlzZSB0aW1lICg4LjAgPSA4YW0pDQpgV2Vla2VuZFNsZWVwYCB8IEF2ZXJhZ2Ugd2Vla2VuZCBiZWR0aW1lICgyNC4wID0gbWlkbmlnaHQpDQpgQXZlcmFnZVNsZWVwYCB8IEF2ZXJhZ2UgaG91cnMgb2Ygc2xlZXAgZm9yIGFsbCBkYXlzDQpgQWxsTmlnaHRlcmAgICB8IEhhZCBhbiBhbGwtbmlnaHRlciB0aGlzIHNlbWVzdGVyPyAxID0geWVzLCAwID0gbm8NCg0KX0RhdGEgRGljdGlvbmFyeSBwcm92aWRlZCBieSBQcm9mZXNzb3IgUmVpIFNhbmNoZXotQXJpYXMgW2hlcmVdKGh0dHBzOi8vZ2l0aHViLmNvbS9yZWlzYW5hci9kYXRhc2V0cy9ibG9iL21hc3Rlci9SRUFETUUubWQpXw0K</div>
 
 
 
