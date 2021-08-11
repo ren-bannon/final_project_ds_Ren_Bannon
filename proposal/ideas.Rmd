@@ -3,16 +3,28 @@ title: "Project Proposal"
 output: html_notebook
 ---
 
-(notice that you can reuse some of the sections below for the final project report)
-
 ## Section 1. Introduction
 
-Include a brief **introduction or motivation** here
+Sleep is often a point of contention for college students. While most would agree that sleep is important, external factors such as work, studying, and mental health can impact one's sleep schedule - and that's an issue.
+
+Getting enough sleep is a necessary step for maintaining both physical and mental health, but that can often come in conflict with college and adult life. This project hopes to explore a sample of College Students who participated in a study on Sleep Patterns, and understand varying demographics' sleep behavior as well as how sleep correlates with **grades**,**mental health** and **cognitive function**  
 
 ## Section 2. Data Analysis Plan
 
-List any **initial questions** you plan to explore in this project. 
+Some questions that I hope to answer include:
+
+- How do different demographics tend to sleep?
+
+- How does sleep correlate with mental health?
+
+- Can sleep have an effect on someone's cognitive function?
+
+- How does poor sleep tend to affect grades?
 
 ## Section 3. Data
 
-Include a brief **description of your dataset** (source, available attributes, format, etc.)
+Dataset provided by [Professor Rei Sanchez-Arias](mailto:rsanchezarias@floridapoly.edu). It can be found here:
+
+<https://github.com/reisanar/datasets/blob/master/SleepStudy.csv>. 
+
+It contains 27 variables and 253 observations, and is distributed in .csv format.
