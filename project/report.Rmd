@@ -1,13 +1,295 @@
 ---
-title: "Final Report for Intro to Data Science"
-output: html_notebook
+title: "College Life and Sleep Patterns"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    df_print: paged
+    number_sections: true
+  html_notebook:
+    toc: yes
+    toc_float: yes
+    theme: darkly
 ---
 
-This is where the final project report write-up goes. 
+_Project by [Ren Bannon]("mailto:rbannon1860@floridapoly.edu")_
+
+# **Introduction**
+
+Sleep is often a point of contention for college students. While most would agree that sleep is important, external factors such as work, studying, and mental health can impact one's sleep schedule - and that's an issue.
+
+Getting enough sleep is a necessary step for maintaining both physical and mental health, but that can often come in conflict with college and adult life. This project hopes to explore a sample of College Students who participated in a study on Sleep Patterns, and hopes to answer a number of questions that are relevant to the discussion of Sleep Behavior:  
+
+- How do different demographics tend to sleep?
+
+- How does sleep correlate with mental health?
+
+- Can sleep have an effect on someone's cognitive function?
+
+- How does poor sleep tend to affect grades?
+
+Using the power of R, `tidyverse`,`dplyr` and various other tools, I will breakdown and analyze the data provided by this study and draw conclusions based on the sleep patterns and analysis I have made.
+
+# Prerequisites
+
+Before we get started, we will need to import various libraries. These libraries contain the tools I will be using for my analysis.
+```{r warning=FALSE, r,message=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(scales)
+```
+
+...as well as the dataset itself, which we will be importing from Dr. Rei Sanchez-Arias's Github repository.
+```{r,message=FALSE,warning=FALSE}
+sleep_data <- read_csv("https://raw.githubusercontent.com/reisanar/datasets/master/SleepStudy.csv")
+```
+
+`sleep_data` will be the variable containing our dataset, and I will be referring to it several times throughout this report.
+
+# The Data: First Look
+
+I find it appropriate to take a glimpse at the dataset and gain some information about it.
+```{r}
+glimpse(sleep_data)
+```
+As we can see from the `glimpse` function, the dataset contains 27 variables and 253 observations. Columns include useful variables such as Depression/Anxiety/Stress levels, Cognition Z-Scores, alcohol consumption, Bedtimes and Wakeup times, and more.
+
+Here is a Data Dictionary provided by Dr. Rei Sanchez-Arias, which describes the variables in more detail:
+
+ Variables    |  Description
+------------  |----------------------------------------------------------------
+`Gender`      | 1 = male, 0 = female
+`ClassYear`        | Year in school, 1 = first year, ..., 4 = senior
+`LarkOwl` | Early riser of night owl? Lark, Neither, or Owl
+`NumEarlyClass`  | Number of classes per week before 9am
+`EarlyClass`      | Indicator for any early classes
+`GPA`        | Grade point average (0-4 scale)
+`ClassesMissed`| Number of classes missed in a semester
+`CognitionZscore`  | Z-score on a test of cognitive skills
+`PoorSleepQuality`      | Measure of sleep quality (higher values are poorer sleep)
+`DepressionScore`        | Measure of degree of depression
+`AnxietyScore` | Measure of amount of anxiety
+`StressScore`  | Measure amount of stress
+`DepressionStatus`      | Coded depression score: normal, moderate, or severe
+`AnxietyStatus`        | Coded anxiety score: normal, moderate, or severe
+`Stress` | Coded stress score: normal or high
+`DASScore`  | Combined score for depression, anxiety and stress
+`Happiness`      | Measure of degree of happiness
+`AlcoholUse`        | Self-reported: Abstain, Light, Moderate, or Heavy
+`Drinks` | Number of alcoholic drinks per week
+`WeekdayBed`  | Average weekday bedtime (24.0 = midnight)
+`WeekdayRise`      | Average weekday rise time (8.0 = 8am)
+`WeekdaySleep`        | Average hours of sleep on weekdays
+`WeekendBed`| Average weekend bedtime (24.0 = midnight)
+`WeekendRise`  | Average weekend rise time (8.0 = 8am)
+`WeekendSleep` | Average weekend bedtime (24.0 = midnight)
+`AverageSleep` | Average hours of sleep for all days
+`AllNighter`   | Had an all-nighter this semester? 1 = yes, 0 = no
+
+Finally, we set the random seed for various random-dependent functions such as creating a Jitterplot
+```{r}
+set.seed(34675432)
+```
+# Part One: Demographics
+
+We'll start by breaking down the data by gender to see how they each compare
+
+## Gender
 
 
-Before you submit, make sure everything runs as expected.
 
-You can add sections as you see fit. Make sure you have a section called "Introduction" at the beginning and a section called "Conclusion" at the end. The rest is up to you!
+Let's start by answering the questions "On average, how poorly are the sleep patterns between genders?" and "Which gender has the poorest sleep quality on average?"
 
-_Make use of your knowledge of Markdown to appropriately typeset this report!_
+Beforehand, we'll add gender names to the dataset
+```{r}
+sleep_data <- sleep_data %>% 
+  mutate(GenderName = if_else(Gender==0,"Female","Male"))
+```
+
+### Gender and Sleep Quality
+
+
+```{r}
+sleep_data %>% 
+  group_by(GenderName) %>% 
+  summarize(poorsleepquality_avg=mean(PoorSleepQuality,na.rm=TRUE)) %>% 
+  select(GenderName,poorsleepquality_avg) %>% 
+  arrange(desc(poorsleepquality_avg))
+```
+
+As you can see, males had a slightly poorer quality of sleep on average than females in the study.
+
+Visualization:
+
+```{r}
+sleep_data %>% 
+  ggplot() +
+  ylim(c(0,20)) +
+  geom_jitter(aes(y=PoorSleepQuality,x=GenderName,colour=GenderName)) +
+  labs(title="Sleep Quality by Gender",x="Gender",y="Sleep Quality (higher = poorer)") +
+  theme(legend.position = "none")
+```
+### Gender and mental health
+
+The dataset contains four values that are relevant to a student's mental health: a depression score, an anxiety score, a stress score, and a score that averages the former three.
+
+Using these scores, we can answer a question that I find necessary to raise: "How does the mental health of students vary between genders?"
+
+Averaging the scores by gender:
+
+```{r}
+sleep_data %>% 
+  group_by(GenderName) %>% 
+  summarize(DepressionAvg=mean(DepressionScore,na.rm=TRUE),AnxietyAvg=mean(AnxietyScore,na.rm=TRUE),StressAvg=mean(StressScore,na.rm=TRUE),DASAvg=mean(DASScore,na.rm=TRUE)) %>% 
+  arrange(desc(DASAvg))
+```
+
+Interestingly enough, males had a slightly higher average depression score than females, but females had higher Anxiety and Stress score on average. Additionally, females had the worst mental health scores overall, having the highest Depression/Anxiety/Stress score on average.
+
+### Gender and grades
+
+Lastly, I want to touch on how grades were distributed between the genders, and answer the question "Which gender achieved the highest GPA?"
+
+```{r}
+sleep_data %>% 
+  select(GenderName,GPA) %>% 
+  arrange(desc(GPA))
+```
+...and now answer "Which gender had the highest GPA on average?"
+
+```{r}
+sleep_data %>% 
+  group_by(GenderName) %>% 
+  summarise(GPAAvg=mean(GPA,na.rm=TRUE)) %>% 
+  arrange(desc(GPAAvg))
+```
+
+We can see that on average, females scored a higher GPA.
+
+Here is a visualization of grades distributed by gender:
+
+```{r}
+sleep_data %>% 
+  arrange(GPA) %>% 
+  ggplot() +
+  geom_jitter(aes(x=GenderName,y=GPA,colour=GenderName)) +
+  theme(legend.position = "none") +
+  labs(title="GPA by Gender",x="Gender",y="GPA")
+```
+## So, what can we draw from this?
+
+We saw that, on average, females had a better sleep schedule, and a higher GPA. Additionally, an interesting aspect of analyzing the mental health scores is that despite having a higher GPA, females had worse D/A/S scores than males did. Something that I found of note is that females performed worse in mental health areas that imply higher amounts of energy, such as Stress and Anxiety, wheras males scored worse in depression. This could mean that females tended to manifest their mental health struggles in a way that may have been more productive (e.g. Stressing over an assignment, having anxiety about a test and choosing to study), whereas males tended towards depressive attitudes that may have inhibited productivity.
+
+For this reason, I believe that mental health and academic success are correlated. Later, we will see how mental health and sleep behaviors are correlated.
+
+
+# Part 2: Sleep
+
+Now, it's time to put aside demographics for a moment and analyse the dataset as a whole.
+
+The most obvious first question to ask would be "How do poor sleep quality and grades correlate?". This visualizer allows us to see for ourselves:
+```{r}
+sleep_data %>% 
+  ggplot() +
+  geom_point(aes(x=PoorSleepQuality,y=GPA,color=ClassYear)) +
+  xlim(0,20) +
+  labs(title="Sleep Quality and GPA between 4 Class Years",x="Poor Sleep Quality (higher = poorer)",y="GPA")
+```
+From the Scattorplot, we can see that the highest concentration of high GPAs occurs with better sleep quality. As one would expect, a poorer sleep quality meant less concentrations of high GPAs.
+
+An analysis of Cognition Z-Scores tells a similar story:
+
+```{r}
+sleep_data %>% 
+  ggplot() +
+  geom_point(aes(x=PoorSleepQuality,y=CognitionZscore,color=ClassYear)) +
+  xlim(0,20) +
+  labs(title="Cognition Z-Scores and Sleep Quality by Class",x="Poor Sleep Quality (higher = poorer)",y="Cognition Z-Score")
+```
+Here we see a similar pattern to GPA; the biggest concentration of higher scores occurs where sleep quality is higher. As sleep quality worsens, less concentrations of high Cognition Z-Scores are present
+
+## External Factors:
+
+Of course, when analyzing sleep and how it affects academic success, its important to look at other factors as well.
+
+### Early Classes
+
+Let's take a look at how many students had early classes, and how many:
+
+```{r}
+sleep_data %>% 
+  ggplot() +
+  geom_bar(aes(x=NumEarlyClass,na.rm=TRUE)) +
+  scale_x_continuous(breaks=-1:6,limits=c(-1,6)) +
+  ylim(c(0,100)) +
+  labs(title="Number of Early Classes for Students",x="Number of early classes",y="Count")
+```
+
+On average, students either had no or 2 early classes.
+
+If we calculate the average sleep quality of those with and without early classes...
+
+```{r}
+sleep_data %>% 
+  group_by(EarlyClass) %>% 
+  summarize(avg_sleepquality=mean(PoorSleepQuality,na.rm=TRUE)) %>% 
+  arrange(desc(avg_sleepquality))
+```
+
+...we see a very interesting observation, in which those without early classes had a noticeably worse sleep quality on average than those who did.
+
+### Bedtimes and Rise times
+
+When people go to bed might affect their quality of sleep.
+
+When averaging out sleep quality per bedtime (remember that a lower number is better!)...
+
+```{r}
+sleep_data %>% 
+  mutate(avg_bedtime=(WeekdayBed+WeekendBed)/2) %>%  # Lets get the student's average bedtime
+  group_by(avg_bedtime) %>% 
+  summarize(avg_sleepquality=mean(PoorSleepQuality,na.rm=TRUE)) %>% 
+  arrange(avg_sleepquality)
+```
+...we can see that the best sleep qualities on average were achieved when sleeping near midnight.
+
+## Mental Health
+
+In the introduction, I asked the question "How does sleep correlate with mental health?", and later I compared mental health scores between genders.
+
+Now, it's time to compare sleep quality to mental health. We will do this using the Depression/Anxiety/Stress value that averages the three scores obtained by the students.
+
+```{r}
+sleep_data %>% 
+  ggplot(aes(x=PoorSleepQuality,y=DASScore)) +
+  geom_point() +
+  geom_smooth(method="lm",se=FALSE) +
+  labs(title="Overall Mental Health and Sleep Quality",x="Poor Sleep Quality (higher = poorer)",y="Depression/Anxiety/Stress score") 
+  
+```
+
+As you can see, the D/A/S score trends upwards for students with worse sleep quality, implying a positive correlation between poor sleep and mental health issues.
+
+
+
+# Conclusion
+
+Analyzing this dataset was truly an eye-opening privilege, and having the ability to contextualize a lot of the issues that college students voice, such as mental health struggles and a lack of sleep, grants a perspective on student living that I think is important. College life, for most, is one's first brush with adulthood, and is often one's first experience living independently from their guardians. It is also a time of great stress for many, as they will be dealing with academic challenges the likes they've never seen before. These new, stressful times leads to many issues for students, and although they are often talked in the same vain as each other, its not often that we talk about how one issue of college living may play into another.
+
+
+Most would agree that sleep is very important, and would also probably agree that college students do not get enough sleep on average because of stress or partying. But analyzing this data gives us tangible evidence that demonstrates not only how important sleep is, but also what happens all-too-commonly to college students who don't get enough of it.
+
+
+# Retrosepctive
+
+This dataset was the first to immediately catch my eye for a multitude of reasons. The most notable reason were the sheer amount of interesting variables at my disposal. This dataset took into account Alcohol consumption, Bed/Rise times, Happiness levels, Cognitive tests, and so much more. The amount of questions that could be answered with it is immense.
+
+I think in the future, I would've asked more core questions to explore the dataset a bit further. I believe that this report would've been more effective had it been expanded upon with more interesting questions, such as "How does alcohol consumption impact sleep?". I would also maintain focus solely on the questions I had asked.
+
+# Source
+
+[Dr. Reinaldo Sanchez-Arias](mailto:rsanchezarias@floridapoly.edu) provided the dataset:
+
+<https://github.com/reisanar/datasets/blob/master/SleepStudy.csv>
+
