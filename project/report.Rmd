@@ -28,7 +28,8 @@ Using the power of R, `tidyverse`,`dplyr` and various other tools, I will breakd
 # Prerequisites
 
 Before we get started, we will need to import various libraries. These libraries contain the tools I will be using for my analysis.
-```{r warning=FALSE, r,message=FALSE}
+
+```{r,warning=FALSE,message=FALSE}
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
@@ -36,6 +37,7 @@ library(scales)
 ```
 
 ...as well as the dataset itself, which we will be importing from Dr. Rei Sanchez-Arias's Github repository.
+
 ```{r,message=FALSE,warning=FALSE}
 sleep_data <- read_csv("https://raw.githubusercontent.com/reisanar/datasets/master/SleepStudy.csv")
 ```
@@ -45,6 +47,7 @@ sleep_data <- read_csv("https://raw.githubusercontent.com/reisanar/datasets/mast
 # The Data: First Look
 
 I find it appropriate to take a glimpse at the dataset and gain some information about it.
+
 ```{r}
 glimpse(sleep_data)
 ```
@@ -82,11 +85,16 @@ Here is a Data Dictionary provided by Dr. Rei Sanchez-Arias, which describes the
 `AverageSleep` | Average hours of sleep for all days
 `AllNighter`   | Had an all-nighter this semester? 1 = yes, 0 = no
 
+
 Finally, we set the random seed for various random-dependent functions such as creating a Jitterplot
+
 ```{r}
 set.seed(34675432)
 ```
+
+
 # Part One: Demographics
+
 
 We'll start by breaking down the data by gender to see how they each compare
 
@@ -97,6 +105,7 @@ We'll start by breaking down the data by gender to see how they each compare
 Let's start by answering the questions "On average, how poorly are the sleep patterns between genders?" and "Which gender has the poorest sleep quality on average?"
 
 Beforehand, we'll add gender names to the dataset
+
 ```{r}
 sleep_data <- sleep_data %>% 
   mutate(GenderName = if_else(Gender==0,"Female","Male"))
@@ -184,6 +193,7 @@ For this reason, I believe that mental health and academic success are correlate
 Now, it's time to put aside demographics for a moment and analyse the dataset as a whole.
 
 The most obvious first question to ask would be "How do poor sleep quality and grades correlate?". This visualizer allows us to see for ourselves:
+
 ```{r}
 sleep_data %>% 
   ggplot() +
