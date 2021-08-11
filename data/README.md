@@ -1,14 +1,12 @@
-# Data Description: IMDB popular movies data
+# Data Description: Sleep patterns for college students
 
-(this is an example only. Edit this file as you see fit. It is recommended that you also include a copy of the original data used for this project in this folder - typically in `.csv` format)
+I use the "Sleep Study" dataset at 
+<https://github.com/reisanar/datasets/blob/master/SleepStudy.csv>
 
-We use the `IMDB_movies.csv` dataset available at 
-<https://github.com/reisanar/datasets/blob/master/IMDB_movies.csv>
+This dataset includes information of Sleep patterns of college students, and demographic information. 
 
-This dataset includes information of popular movies on IMDB in the last 10 years. 
+The data fields included are: Gender, Class Year, Lark Owl, Numbers of early classes, Whether or not one has an early class, GPA, Classes Missed, Z-Score cognition tests, A measurement of poor sleep quality, A Depression Score measurement (as well as one for Anxiety and Stress), One's "status" of depression/anxiety,stress (normal, moderate, severe) and a combined variable for all three, Alcohol Use (self-reported), Number of alocoholic drinks per week, Bedtimes and Rise times, Average hours of sleep for weekends and weekdays, and whether or not the student pulled an all-nighter.
 
-The data fields included are: Title, Genre, Description, Director, Actors, Year, Runtime, Rating, Votes, Revenue, Metascore (score of the movie on the metacritic website)
+Below I include some basic statistics for this datasets, including dimensions and range of years ...
 
-Below we include some basic statistics for this datasets, including dimensions and range of years ...
-
-(add basic summary if needed. Notice that the information above can be reused for one of the sections for the final project report)
+THere are 27 Variables and 253 observations, over a period of 4 school years.
